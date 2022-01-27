@@ -1,0 +1,19 @@
+.caption{
+    height: 156px;    
+}
+
+.thumbnail {
+    border: 0px;
+}
+.list-group-item {
+    border: 0px !important;
+}
+@media only screen and (max-width: 767px) {
+    .list-group-item {
+        text-align: center !important;
+    }
+}
+.carousel-control, .item {
+    border-radius: 20px;
+}
+
