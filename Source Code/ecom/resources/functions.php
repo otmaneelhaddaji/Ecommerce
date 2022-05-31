@@ -1,9 +1,8 @@
 <?php
-// if you need to change the uploads directory.
+
 
 $upload_directory = "uploads";
 
-// helper fuctions
 
 function last_id()
 {
@@ -58,7 +57,7 @@ function fetch_array($result)
     return mysqli_fetch_array($result);
 }
 
-// get products
+
 
 function get_products()
 {
@@ -71,7 +70,7 @@ function get_products()
                         <div class="thumbnail">
                            <a href="item.php?id={$row['product_id']}"><img src="{$row['product_image']}" alt=""></a>
                             <div class="caption">
-                                <h4 class="pull-right">R {$row['product_price']}</h4>
+                                <h4 class="pull-right">MAD {$row['product_price']}</h4>
                                 <h4><a href="item.php?id={$row['product_id']}">{$row['product_title']}</a>
                                 </h4>
                                 <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['product_id']}">Add to cart</a>
@@ -84,7 +83,6 @@ function get_products()
     }
 }
 
-// get categories
 
 function get_categories()
 {
@@ -112,7 +110,7 @@ function get_products_category_page()
                     <div class="caption">
                         <h3>{$row['product_title']}</h3>
                         <p>
-                        <p>R {$row['product_price']}</p>
+                        <p>MAD {$row['product_price']}</p>
                         <a class="btn btn-primary" target="_blank" href="../resources/cart.php?add={$row['product_id']}">Add to cart</a> <a class="btn btn-primary" target="_blank" href="item.php?id={$row['product_id']}">More Info</a>
                         </p>
                     </div>
@@ -216,7 +214,7 @@ function get_products_in_admin()
                 </td>
                 <td>{$category}</td>
                 <td>{$row['product_quantity']}</td>
-                <td>R {$row['product_price']}</td>
+                <td>MAD {$row['product_price']}</td>
                 <td><a class="btn" href="index.php?edit_product&id={$row['product_id']}"><span class="glyphicon glyphicon-edit"></span></a>   <a class="btn" href="index.php?delete_product_id={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>
         DELIMETER;
@@ -392,9 +390,7 @@ function add_user()
         $username   = escape_string($_POST['username']);
         $email      = escape_string($_POST['email']);
         $password   = escape_string($_POST['password']);
-        // $user_photo = escape_string($_FILES['file']['name']);
-        // $photo_temp = escape_string($_FILES['file']['tmp_name']);
-        // move_uploaded_file($photo_temp, UPLOAD_DIRECTORY . DS . $user_photo);
+
         $query = query("INSERT INTO users(username,email,password) VALUES('{$username}','{$email}','{$password}')");
         confirm($query);
         set_message("USER CREATED");
@@ -413,7 +409,7 @@ function get_reports()
                 <td>{$row['report_id']}</td>
                 <td>{$row['product_id']}</td>
                 <td>{$row['order_id']}</td>
-                <td>R {$row['product_price']}</td>
+                <td>MAD {$row['product_price']}</td>
                 <td>{$row['product_title']}</td>
                 <td>{$row['product_quantity']}</td>
                 <td><a class="btn" href="index.php?delete_reports_id={$row['report_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>

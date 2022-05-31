@@ -1,7 +1,7 @@
 <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
 
-<!-- Page Content -->
+
 <div class="container">
 
     <header>
@@ -28,14 +28,14 @@
 </div>
 
 </div>
-<!-- /.container -->
+
 
 <div class="container">
 
     <hr>
 
 </div>
-<!-- /.container -->
+
 
 
 <?php include(TEMPLATE_FRONT . DS . "footer.php"); ?>

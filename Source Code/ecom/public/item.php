@@ -34,7 +34,7 @@
                         <div class="caption-full">
                             <h4><a href="#"><?php echo $row['product_title'] ?></a> </h4>
                             <hr>
-                            <h4 class="">R <?php echo $row['product_price'] ?></h4>
+                            <h4 class="">MAD <?php echo $row['product_price'] ?></h4>
 
                             <div class="ratings">
 
@@ -65,19 +65,17 @@
 
 
             </div>
-            <!--Row For Image and Short Description-->
-
 
             <hr>
 
 
-            <!--Row for Tab Panel-->
+
 
             <div class="row">
 
                 <div role="tabpanel">
 
-                    <!-- Nav tabs -->
+
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>

@@ -2,7 +2,6 @@
 
 <?php
 
-// add item to cart
 if (isset($_GET['add'])) {
     $query = query("SELECT *FROM products WHERE product_id = " . escape_string($_GET['add']) . " ");
     confirm($query);
@@ -16,12 +15,10 @@ if (isset($_GET['add'])) {
             redirect("../public/checkout.php");
         }
     }
-    // Test code
-    //$_SESSION['product_'.$_GET['add']] += 1;
-    //redirect("../public/index.php");
+
 }
 
-// remove item from cart
+
 if (isset($_GET['remove'])) {
     $_SESSION['product_' . $_GET['remove']]--;
     if ($_SESSION['product_' . $_GET['remove']] < 1) {
@@ -33,7 +30,7 @@ if (isset($_GET['remove'])) {
     }
 }
 
-// delete item from cart
+
 if (isset($_GET['delete'])) {
     $_SESSION['product_' . $_GET['delete']] = '0';
     unset($_SESSION['item_total']);
@@ -41,7 +38,7 @@ if (isset($_GET['delete'])) {
     redirect("../public/checkout.php");
 }
 
-// add/remove/delete single items in cart
+
 function cart()
 {
     $total = 0;
@@ -52,10 +49,10 @@ function cart()
     $quantity = 1;
 
     foreach ($_SESSION as $name => $value) {
-        // value is the quantity of a product
+
         if ($value > 0) {
             if (substr($name, 0, 8) == "product_") {
-                // using string length to isolate product id
+     
                 $length = strlen($name);
                 $id = substr($name, 8, $length);
 
@@ -63,7 +60,7 @@ function cart()
                 confirm($query);
 
                 while ($row = fetch_array($query)) {
-                    // sub-total calculation
+       
                     $sub = $row['product_price'] * $value;
                     $item_quantity += $value;
                     $currency_convert = $row['product_price'] * 0.06;
@@ -73,9 +70,9 @@ function cart()
                             <td>{$row['product_title']}<br>
                             <img width='60' src ='{$row['product_image']}'>
                             </td>
-                            <td>R {$row['product_price']}</td>
+                            <td>MAD {$row['product_price']}</td>
                             <td>{$value}</td>
-                            <td>R {$sub}</td>
+                            <td>MAD {$sub}</td>
                             <td><a class='btn' href="../resources/cart.php?remove={$row['product_id']}"><span class='glyphicon glyphicon-minus'></span></a><a class='btn' href="../resources/cart.php?add={$row['product_id']}"><span class='glyphicon glyphicon-plus'></a><a class='btn' href="../resources/cart.php?delete={$row['product_id']}"><span class='glyphicon glyphicon-remove'></a></td>
                         </tr>
                         <input type="hidden" name="item_name_{$item_name}" value="{$row['product_title']}">
@@ -86,21 +83,19 @@ function cart()
                     DELIMETER;
 
                     echo $product;
-                    // For paypal
+    
                     $item_name++;
                     $item_number++;
                     $amount++;
                     $quantity++;
                 }
-                // calculate cart total & quantity
+   
                 $_SESSION['item_total'] = $total += $sub;
                 $_SESSION['item_quantity'] = $item_quantity;
             }
         }
     }
 }
-// hide buy now button if there is no items in cart
-// Local button image code       <input type="image" name="upload" src="/resources/images/580b57fcd9996e24bc43c464.png" width = "170px"  height = "auto" alt="PayPal - The safer, easier way to pay online">
 
 function show_paypal()
 {
@@ -124,10 +119,10 @@ function process_transaction()
         $item_quantity = 0;
 
         foreach ($_SESSION as $name => $value) {
-            // value is the quantity of a product
+  
             if ($value > 0) {
                 if (substr($name, 0, 8) == "product_") {
-                    // using string length to isolate product id
+             
                     $length = strlen($name);
                     $id = substr($name, 8, $length);
 
@@ -144,12 +139,12 @@ function process_transaction()
                         $sub = $row['product_price'] * $value;
                         $item_quantity += $value;
 
-                        //$currency_convert = $row['product_price'] * 0.06;
+           
 
                         $insert_report = query("INSERT INTO reports (product_id, order_id, product_price, product_title, product_quantity) VALUES ('{$id}','{$last_id}','{$product_price}','{$product_title}','{$value}')");
                         confirm($insert_report);
                     }
-                    // calculate cart total & quantity
+       
                     $total += $sub;
                     $item_quantity;
                 }

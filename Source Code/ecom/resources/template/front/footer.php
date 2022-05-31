@@ -6,7 +6,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Morne du Toit 2021</p>
+                <p>Copyright &copy; 2022</p>
             </div>
         </div>
     </footer>
